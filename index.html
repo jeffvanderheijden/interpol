@@ -1,95 +1,83 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>AR Treasure Hunt</title>
-  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/ar.js"></script>
-</head>
-<body>
-  <script>
-    // Get user's current location
-    navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+  <head>
+    <meta charset="utf-8">
+    <title>AR Treasure Hunt</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ar.js"></script>
+  </head>
+  <body style="margin: 0; overflow: hidden;">
+    <a-scene embedded arjs>
+      <a-marker preset="hiro">
+        <a-entity position="0 0 0">
+          <a-box position="0 0.5 0" color="red" width="1" height="1" depth="1"></a-box>
+          <a-entity
+            position="0 -1 0"
+            text="value: Distance: 0 km; align: center; width: 4; color: black;"
+          ></a-entity>
+          <a-entity
+            position="0 -1.5 0"
+            text="value: Direction: 0 degrees; align: center; width: 4; color: black;"
+          ></a-entity>
+        </a-entity>
+      </a-marker>
+      <a-camera-static></a-camera-static>
+    </a-scene>
 
-    function successCallback(position) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
-      const targetLatitude = 51.9277199;
-      const targetLongitude = 4.4782847;
+    <script>
+      navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
 
-      // Calculate distance and direction
-      const distance = calculateDistance(latitude, longitude, targetLatitude, targetLongitude);
-      const direction = getDirection(latitude, longitude, targetLatitude, targetLongitude);
+      function successCallback(position) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        const targetLatitude = 51.9277199;
+        const targetLongitude = 4.4782847;
 
-      // Update AR scene elements
-      const distanceElement = document.getElementById('distance');
-      const directionElement = document.getElementById('direction');
+        const distance = calculateDistance(latitude, longitude, targetLatitude, targetLongitude);
+        const direction = getDirection(latitude, longitude, targetLatitude, targetLongitude);
 
-      distanceElement.textContent = `Distance: ${distance.toFixed(2)} km`;
-      directionElement.textContent = `Direction: ${direction.toFixed(2)} degrees`;
-    }
+        const distanceElement = document.querySelector('[text="Distance: 0 km;"]');
+        const directionElement = document.querySelector('[text="Direction: 0 degrees;"]');
 
-    function errorCallback(error) {
-      console.error(error.message);
-    }
+        distanceElement.setAttribute('text', `value: Distance: ${distance.toFixed(2)} km;`);
+        directionElement.setAttribute('text', `value: Direction: ${direction.toFixed(2)} degrees;`);
+      }
 
-    function calculateDistance(lat1, lon1, lat2, lon2) {
-      const R = 6371; // Radius of the earth in km
-      const dLat = toRadians(lat2 - lat1);
-      const dLon = toRadians(lon2 - lon1);
-      const a =
-        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-        Math.cos(toRadians(lat1)) *
-        Math.cos(toRadians(lat2)) *
-        Math.sin(dLon / 2) *
-        Math.sin(dLon / 2);
-      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-      const distance = R * c; // Distance in km
-      return distance;
-    }
+      function errorCallback(error) {
+        console.error(error.message);
+      }
 
-    function toRadians(degrees) {
-      return degrees * (Math.PI / 180);
-    }
+      function calculateDistance(lat1, lon1, lat2, lon2) {
+        const R = 6371; // Radius of the Earth in km
+        const dLat = toRadians(lat2 - lat1);
+        const dLon = toRadians(lon2 - lon1);
+        const a =
+          Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+          Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2)) *
+          Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        const distance = R * c; // Distance in km
+        return distance;
+      }
 
-    function getDirection(lat1, lon1, lat2, lon2) {
-      const dLon = toRadians(lon2 - lon1);
-      const y = Math.sin(dLon) * Math.cos(toRadians(lat2));
-      const x =
-        Math.cos(toRadians(lat1)) * Math.sin(toRadians(lat2)) -
-        Math.sin(toRadians(lat1)) *
-        Math.cos(toRadians(lat2)) *
-        Math.cos(dLon);
-      let bearing = Math.atan2(y, x);
-      bearing = toDegrees(bearing);
-      return (bearing + 360) % 360;
-    }
+      function toRadians(degrees) {
+        return degrees * (Math.PI / 180);
+      }
 
-    function toDegrees(radians) {
-      return radians * (180 / Math.PI);
-    }
-  </script>
+      function getDirection(lat1, lon1, lat2, lon2) {
+        const dLon = toRadians(lon2 - lon1);
+        const y = Math.sin(dLon) * Math.cos(toRadians(lat2));
+        const x =
+          Math.cos(toRadians(lat1)) * Math.sin(toRadians(lat2)) -
+          Math.sin(toRadians(lat1)) * Math.cos(toRadians(lat2)) * Math.cos(dLon);
+        let bearing = Math.atan2(y, x);
+        bearing = toDegrees(bearing);
+        return (bearing + 360) % 360;
+      }
 
-  <a-scene embedded arjs>
-    <a-marker preset="hiro">
-      <a-entity position="0 0 0">
-        <a-entity
-          geometry="primitive: box; width: 1; height: 1; depth: 1"
-          material="color: red"
-        ></a-entity>
-        <a-entity
-          text="value: Distance: 0 km; align: center"
-          position="0 -1.5 0"
-          id="distance"
-        ></a-entity>
-        <a-entity
-          text="value: Direction: 0 degrees; align: center"
-          position="0 -2.5 0"
-          id="direction"
-        ></a-entity>
-      </a-entity>
-    </a-marker>
-    <a-camera-static></a-camera-static>
-  </a-scene>
-</body>
+      function toDegrees(radians) {
+        return radians * (180 / Math.PI);
+      }
+    </script>
+  </body>
 </html>
