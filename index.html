@@ -36,8 +36,8 @@
         const distance = calculateDistance(latitude, longitude, targetLatitude, targetLongitude);
         const direction = getDirection(latitude, longitude, targetLatitude, targetLongitude);
 
-        const distanceElement = document.querySelector('[text="Distance: 0 km;"]');
-        const directionElement = document.querySelector('[text="Direction: 0 degrees;"]');
+        const distanceElement = document.querySelector('a-entity[position="0 -1 0"]');
+        const directionElement = document.querySelector('a-entity[position="0 -1.5 0"]');
 
         distanceElement.setAttribute('text', `value: Distance: ${distance.toFixed(2)} km;`);
         directionElement.setAttribute('text', `value: Direction: ${direction.toFixed(2)} degrees;`);
