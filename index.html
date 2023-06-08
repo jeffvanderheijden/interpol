@@ -6,18 +6,25 @@
   <style>
     #arScene {
       height: 100vh;
-      width: 100%;
+      width: 100vw;
     }
   </style>
 </head>
 <body>
   <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ar.js/2.1.1/aframe-ar.js"></script>
-  <a-scene embedded arjs="detectionMode: mono_and_matrix;">
+  <div class="arjs-loader">
+    <div>Loading, please wait...</div>
+  </div>
+  <a-scene 
+    embedded 
+    arjs="detectionMode: mono_and_matrix; trackingMethod: best; debugUIEnabled: false;" 
+    vr-mode-ui="enabled: false;"
+  >
     <a-marker-camera preset="custom">
       <a-marker type="pattern" url="/patterns/aula.patt">
         <a-entity
-          position="0 0 0"
+          position="100 0 0"
           scale="0.2 0.2 0.2"
           rotation="0 0 0"
           gltf-model="models/ga-naar-aula.glb"
