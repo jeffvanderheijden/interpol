@@ -1,0 +1,108 @@
+html {
+  height: 100vh;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  height: 100%;
+}
+
+.password {
+  width: 700px;
+  height: auto;
+  padding: 40px;
+  background-color: #e8e8e8;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  border: 3px solid #999;
+  box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.25);
+}
+.password.shake {
+  animation-name: shake;
+  animation-duration: 0.5s;
+  transform-origin:50% 50%;
+  animation-iteration-count: infinite;
+  border: 3px solid #ff0000;
+  box-shadow: 0px 0px 25px 0px rgb(255, 0, 0);
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+form {
+  margin: 0 auto;
+}
+
+input {
+  width: 40px;
+  height: 60px;
+  padding: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  border-color: #999;
+  border-style:solid;
+  border-radius: 10px;
+}
+
+button {
+  position: relative;
+  padding: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  border-color: #999;
+  border-style: solid;
+  border-radius: 10px;
+  border: none;
+  background-color: green;
+  height: 104px;
+  width: 80px;
+  margin-left: 4px;
+  float: right;
+  cursor: pointer;
+}
+
+button svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -13px;
+  margin-top: -15px;
+}
+
+#hint {
+  display: none;
+  background: white; 
+  padding: 30px; 
+  border-radius: 10px; 
+  position: absolute; 
+  border: 3px solid #999; 
+  box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.25);
+}
+
+#hint.visible {
+  display: block;
+}
+
+@keyframes shake {
+  0% { -webkit-transform: translate(2px, 1px) rotate(0deg); } 
+  10% { -webkit-transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { -webkit-transform: translate(-3px, 0px) rotate(1deg); }
+  30% { -webkit-transform: translate(0px, 2px) rotate(0deg); }
+  40% { -webkit-transform: translate(1px, -1px) rotate(1deg); }
+  50% { -webkit-transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { -webkit-transform: translate(-3px, 1px) rotate(0deg); }
+  70% { -webkit-transform: translate(2px, 1px) rotate(-1deg); }
+  80% { -webkit-transform: translate(-1px, -1px) rotate(1deg); }
+  90% { -webkit-transform: translate(2px, 2px) rotate(0deg); }
+  100% { -webkit-transform: translate(1px, -2px) rotate(-1deg); }
+}
