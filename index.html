@@ -1,37 +1,132 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Find scannable posters</title>
-  <style>
-    #arScene {
-      height: 100vh;
-      width: 100vw;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="styles.css">
+  <title>⌧⌖⇧⌘⌧⌖</title>
 </head>
+<style>
+  body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  ul {
+    width: 100%;
+  }
+  ul li {
+    height: 25px;
+    width: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: inline-block;
+    text-align: center;
+  }
+</style>
 <body>
-  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ar.js/2.1.1/aframe-ar.js"></script>
-  <div class="arjs-loader">
-    <div>Loading, please wait...</div>
+  <div style="text-align: center;">
+    <div id="cipher">
+      <h1 style="margin-bottom: 30px;">Cipher</h1>
+      <ul style="margin-bottom: 80px; background-color: #e8e8e8; padding: 20px; border: 3px solid #999; border-radius: 10px; box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.25);">
+        <li>⌢</li>
+        <li>⬣</li>
+        <li>◌</li> 
+        <li>⌖</li>
+        <li>⧩</li>
+        <li>◆</li> 
+        <li>⌘</li> 
+        <li>⌗</li> 
+        <li>.</li> 
+        <li>▤</li> 
+        <li>⌖</li>
+        <li>⌞</li>
+        <li>⌞</li>
+        <li>⬠</li>
+        <li>△</li>
+        <li>⬣</li>
+        <li>⌧</li>
+        <li>⌖</li>
+        <li>⧩</li>
+        <li>⬧</li>
+        <li>⌖</li>
+        <li>⌗</li>
+        <li>▤</li>
+        <li>⌧</li>
+        <li>⌖</li>
+        <li>⬣</li>
+        <li>.</li>
+        <li>⬣</li>
+        <li>⌗</li>
+        <li>/</li>
+        <li>△</li>
+        <li>⧩</li>
+      </ul> 
+    </div>
+    <div id="alphabet">
+      <ul>
+        <li>△</li>
+        <li>○</li>
+        <li>⇧</li> 
+        <li>⌧</li>
+        <li>⌖</li>
+        <li>⌞</li> 
+        <li>⌠</li> 
+        <li>⬧</li> 
+        <li>⌢</li> 
+        <li>▤</li> 
+        <li>⌔</li> 
+        <li>⌗</li> 
+        <li>◈</li> 
+        <li>⬣</li> 
+        <li>⌘</li> 
+        <li>◆</li> 
+        <li>▼</li> 
+        <li>⧩</li> 
+        <li>⬦</li> 
+        <li>◌</li> 
+        <li>□</li> 
+        <li>⬠</li> 
+        <li>▢</li> 
+        <li>⬥</li> 
+        <li>⧫</li> 
+        <li>▧</li> 
+      </ul>
+
+      <ul style="display: none;">
+        <li>a</li>
+        <li>b</li>
+        <li>c</li> 
+        <li>d</li>
+        <li>e</li>
+        <li>f</li> 
+        <li>g</li> 
+        <li>h</li> 
+        <li>i</li> 
+        <li>j</li> 
+        <li>k</li> 
+        <li>l</li> 
+        <li>m</li> 
+        <li>n</li> 
+        <li>o</li> 
+        <li>p</li> 
+        <li>q</li> 
+        <li>r</li> 
+        <li>s</li> 
+        <li>t</li> 
+        <li>u</li> 
+        <li>v</li> 
+        <li>w</li> 
+        <li>x</li> 
+        <li>y</li> 
+        <li>z</li> 
+      </ul>
+    </div>
   </div>
-  <a-scene 
-    embedded 
-    arjs="detectionMode: mono_and_matrix; trackingMethod: best; debugUIEnabled: false;" 
-    vr-mode-ui="enabled: false;"
-  >
-    <a-marker-camera preset="custom">
-      <a-marker type="pattern" url="/patterns/aula.patt">
-        <a-entity
-          position="0 0 0"
-          scale="0.2 0.2 0.2"
-          rotation="0 0 0"
-          gltf-model="models/ga-naar-aula.glb"
-        ></a-entity>
-      </a-marker>
-    </a-marker-camera>
-    <a-entity camera></a-entity>
-  </a-scene>
 </body>
 </html>
+
